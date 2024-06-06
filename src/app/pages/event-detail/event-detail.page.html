@@ -1,0 +1,18 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{currenEvent?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <p>Ticket: <strong>{{currenEvent?.price | currency}}</strong></p>
+      <p>Date: <strong>{{currenEvent?.date | date}}</strong></p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
