@@ -1,18 +1,40 @@
-<ion-header >
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{currenEvent?.name}}</ion-title>
+    <ion-title>{{ currenEvent?.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-content>
-      <p>Ticket: <strong>{{currenEvent?.price | currency}}</strong></p>
-      <p>Date: <strong>{{currenEvent?.date | date}}</strong></p>
+      <p>Ticket: <strong>{{ currenEvent?.price | currency }}</strong></p>
+      <p>Date: <strong>{{ currenEvent?.date | date }}</strong></p>
+      <p>Total pagados <strong>{{ totalPaidGuests }}</strong></p> 
     </ion-card-content>
   </ion-card>
-</ion-content>
 
+  <ion-card class="add-guest-form">
+    <ion-card-header>Add Guests</ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input label="Name" [(ngModel)]="guestName" type="text" placeholder="Ingresa el nombre del invitado"></ion-input>
+      </ion-item>
+      <ion-button color="primary" expand="block" [disabled]="!guestName" (click)="addGuest(guestName)">Añadir invitado</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="guestList.length > 0">
+    <h2>Lista de Asistentes</h2>
+    <ul>
+      <li *ngFor="let guest of guestList">
+        {{ guest.guestName }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="guestList.length === 0">
+    <p>No hay asistentes registrados para este evento.</p>
+  </div>
+</ion-content>

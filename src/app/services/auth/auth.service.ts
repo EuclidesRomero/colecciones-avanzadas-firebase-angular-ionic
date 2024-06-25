@@ -31,6 +31,10 @@ export class AuthService {
     let user = this.fAuth.currentUser;
     return user;
    }
+
+   estaAutenticado(): boolean {
+    return this.fAuth.currentUser != null;
+    }
    
   }
 
